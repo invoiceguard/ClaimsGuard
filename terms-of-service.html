@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | ClaimsGuard.io</title>
+    <meta name="description" content="ClaimsGuard.io Terms of Service - Our service agreement and terms.">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+    
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --primary-light: #2c5282;
+            --primary-dark: #152a45;
+            --accent: #10b981;
+            --accent-light: #34d399;
+            --light: #f8fafc;
+            --light-gray: #f1f5f9;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --gray-light: #94a3b8;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Header */
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .logo-shield {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-shield svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: white;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: var(--gradient);
+            color: white;
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+        
+        /* Content */
+        .content {
+            padding: 4rem 0;
+        }
+        
+        .content-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .content-section {
+            margin-bottom: 2.5rem;
+        }
+        
+        .content-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .content-section h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        .content-section h3 {
+            color: var(--primary);
+            font-size: 1.125rem;
+            margin: 1.5rem 0 0.75rem;
+        }
+        
+        .content-section p {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        .content-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .content-section li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+        
+        .last-updated {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--gray);
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1.5rem 0;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand .logo {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand p {
+            color: var(--gray-light);
+        }
+        
+        .footer-section h4 {
+            color: var(--accent-light);
+            margin-bottom: 1.25rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .footer-section a {
+            color: var(--gray-light);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.75rem;
+            transition: color 0.2s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--gray-light);
+        }
+        
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .content-wrapper {
+                padding: 2rem 1.5rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-shield">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M9 12l2 2 4-4" stroke-width="3"/>
+                    </svg>
+                </div>
+                ClaimsGuard.io
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html#problem">Problem</a></li>
+                <li><a href="index.html#solution">Solution</a></li>
+                <li><a href="index.html#roi">Calculator</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Terms of Service</h1>
+            <p>Service agreement and terms of use</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="content">
+        <div class="container">
+            <div class="content-wrapper">
+                
+                <div class="last-updated">
+                    <strong>Last Updated:</strong> March 20, 2026
+                </div>
+                
+                <div class="content-section">
+                    <h2>Agreement to Terms</h2>
+                    <p>By accessing or using the services provided by ClaimsGuard.io ("Company," "we," "our," or "us"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use our services.</p>
+                    
+                    <div class="highlight-box">
+                        <strong>Important:</strong> These Terms constitute a legally binding agreement between you and ClaimsGuard.io regarding your use of our claims audit and recovery services.
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Description of Services</h2>
+                    <p>ClaimsGuard.io provides medical claims auditing and recovery services for self-insured employers, TPAs, and health plan administrators. Our services include:</p>
+                    
+                    <ul>
+                        <li>Analysis of 835/837 EDI claims data</li>
+                        <li>Identification of billing errors and overpayments</li>
+                        <li>Recovery support and documentation</li>
+                        <li>Consultation on claims processing improvements</li>
+                    </ul>
+                    
+                    <p>We do not guarantee specific recovery amounts or results. Actual recoveries depend on the specific claims reviewed and the circumstances of each case.</p>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Client Responsibilities</h2>
+                    
+                    <h3>Data Provision</h3>
+                    <p>You agree to provide accurate, complete, and timely access to claims data necessary for us to perform our services. This includes:</p>
+                    
+                    <ul>
+                        <li>835 remittance advice files</li>
+                        <li>837 claim submission files</li>
+                        <li>Plan documents and benefit summaries</li>
+                        <li>Relevant contracts and fee schedules</li>
+                        <li>Authorization to contact payers if needed</li>
+                    </ul>
+                    
+                    
+                    <h3>Data Accuracy</h3>
+                    <p>You represent that all data provided to us is accurate and that you have the legal right to share this data with us for the purpose of claims auditing.</p>
+                    
+                    
+                    <h3>HIPAA Compliance</h3>
+                    <p>If you are a Covered Entity under HIPAA, you agree to execute a Business Associate Agreement (BAA) with us prior to sharing any Protected Health Information (PHI).</p>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Fees and Payment</h2>
+                    
+                    <h3>Contingency Fee Structure</h3>
+                    <p>Unless otherwise agreed in writing, our fees are based on a percentage of actual recoveries obtained as a result of our services ("Contingency Fee"). The specific percentage will be outlined in your Service Agreement.</p>
+                    
+                    
+                    <h3>Payment Terms</h3>
+                    
+                    <ul>
+                        <li>No upfront fees or retainers</li>
+                        <li>Fees are due only upon successful recovery</li>
+                        <li>Payment is due within 30 days of recovery receipt</li>
+                        <li>We reserve the right to invoice monthly for accumulated recoveries</li>
+                    </ul>
+                    
+                    
+                    <h3>Expense Reimbursement</h3>
+                    <p>In certain circumstances, we may require reimbursement for specific out-of-pocket expenses incurred on your behalf, subject to prior written approval.</p>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Confidentiality</h2>
+                    
+                    <p>We agree to maintain the confidentiality of all client information and data in accordance with our Privacy Policy and applicable laws. This includes:</p>
+                    
+                    <ul>
+                        <li>Claims data and PHI</li>
+                        <li>Business and financial information</li>
+                        <li>Contract terms and pricing</li>
+                        <li>Recovery results and findings</li>
+                    </ul>
+                    
+                    <p>Confidentiality obligations survive termination of services.</p>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Intellectual Property</h2>
+                    
+                    <p>All reports, analyses, documentation, and work product created by ClaimsGuard.io in the course of providing services remain our intellectual property. You are granted a limited license to use these materials for internal purposes and recovery efforts related to your organization.</p>
+                    
+                    <p>You may not resell, redistribute, or use our work product for commercial purposes outside your organization without our prior written consent.</p>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Limitation of Liability</h2>
+                    
+                    <p>To the maximum extent permitted by law:</p>
+                    
+                    <ul>
+                        <li>We are not liable for any indirect, incidental, special, consequential, or punitive damages</li>
+                        <li>Our total liability shall not exceed the total fees paid by you in the 12 months preceding the claim</li>
+                        <li>We do not guarantee specific recovery amounts or results</li>
+                        <li>We are not responsible for payer denials of recovery claims</li>
+                    </ul>
+                    
+                    
+                    <p>Our services are provided "as is" without warranties of any kind, either express or implied, except as expressly stated in your Service Agreement.</p>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Indemnification</h2>
+                    
+                    <p>You agree to indemnify and hold harmless ClaimsGuard.io, its officers, directors, employees, and agents from any claims, damages, liabilities, costs, and expenses (including reasonable attorneys' fees) arising from:</p>
+                    
+                    <ul>
+                        <li>Your breach of these Terms</li>
+                        <li>Your violation of any law or regulation</li>
+                        <li>Your negligence or willful misconduct</li>
+                        <li>Any data you provide to us</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Term and Termination</h2>
+                    
+                    <p>These Terms remain in effect until terminated by either party. Either party may terminate services with 30 days' written notice.</p>
+                    
+                    <p>Upon termination:</p>
+                    
+                    <ul>
+                        <li>You remain responsible for payment of fees for recoveries obtained prior to termination</li>
+                        <li>We will return or securely destroy your data as specified in our BAA or data handling agreement</li>
+                        <li>Confidentiality obligations continue</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Governing Law</h2>
+                    
+                    <p>These Terms shall be governed by and construed in accordance with the laws of the State of Texas, without regard to conflict of law principles. Any disputes shall be resolved in the state or federal courts located in Dallas County, Texas.</p>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Changes to Terms</h2>
+                    
+                    <p>We may modify these Terms at any time. We will notify you of material changes by posting the updated Terms on our website and updating the "Last Updated" date. Your continued use of our services after such changes constitutes acceptance of the new Terms.</p>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Contact Information</h2>
+                    
+                    <p>If you have questions about these Terms, please contact us:</p>
+                    
+                    <p><strong>Email:</strong> fast@claimsguard.io</p>
+                    <p><strong>Website:</strong> https://claimsguard.io</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo" style="color: white;">
+                        <div class="logo-shield">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                <path d="M9 12l2 2 4-4" stroke-width="3"/>
+                            </svg>
+                        </div>
+                        ClaimsGuard.io
+                    </a>
+                    <p>AI-powered medical claims recovery for self-insured employers.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="index.html#problem">The Problem</a>
+                    <a href="index.html#solution">How It Works</a>
+                    <a href="index.html#roi">Calculator</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <a href="index.html#contact">Contact Us</a>
+                    <a href="https://forms.gle/TzJToPPfcbXkh9kR9" target="_blank">Get a Quote</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                    <a href="hipaa-compliance.html">HIPAA Compliance</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 ClaimsGuard.io. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

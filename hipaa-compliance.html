@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIPAA Compliance | ClaimsGuard.io</title>
+    <meta name="description" content="ClaimsGuard.io HIPAA Compliance - How we protect Protected Health Information (PHI).">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+    
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --primary-light: #2c5282;
+            --primary-dark: #152a45;
+            --accent: #10b981;
+            --accent-light: #34d399;
+            --light: #f8fafc;
+            --light-gray: #f1f5f9;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --gray-light: #94a3b8;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Header */
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .logo-shield {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-shield svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: white;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: var(--gradient);
+            color: white;
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+        
+        /* Content */
+        .content {
+            padding: 4rem 0;
+        }
+        
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .content-section {
+            margin-bottom: 3rem;
+        }
+        
+        .content-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .content-section h2 {
+            color: var(--primary);
+            font-size: 1.75rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        .content-section h3 {
+            color: var(--primary);
+            font-size: 1.25rem;
+            margin: 1.5rem 0 0.75rem;
+        }
+        
+        .content-section p {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        .content-section ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .content-section li {
+            margin-bottom: 0.75rem;
+            line-height: 1.7;
+        }
+        
+        /* Cards */
+        .info-card {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-left: 4px solid var(--accent);
+            padding: 2rem;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 2rem;
+        }
+        
+        .info-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            margin-top: 0;
+        }
+        
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .security-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--light-gray);
+        }
+        
+        .security-card strong {
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .security-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+        
+        .feature-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            flex-shrink: 0;
+        }
+        
+        .feature-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            margin-top: 0;
+        }
+        
+        .feature-content p {
+            color: var(--gray);
+            margin-bottom: 0;
+        }
+        
+        .contact-box {
+            text-align: center;
+            padding: 2.5rem;
+            background: var(--light-gray);
+            border-radius: 16px;
+            margin-top: 3rem;
+        }
+        
+        .contact-box h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-box p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-box .email {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand .logo {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand p {
+            color: var(--gray-light);
+        }
+        
+        .footer-section h4 {
+            color: var(--accent-light);
+            margin-bottom: 1.25rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .footer-section a {
+            color: var(--gray-light);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.75rem;
+            transition: color 0.2s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--gray-light);
+        }
+        
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .feature-box {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-shield">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M9 12l2 2 4-4" stroke-width="3"/>
+                    </svg>
+                </div>
+                ClaimsGuard.io
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html#problem">Problem</a></li>
+                <li><a href="index.html#solution">Solution</a></li>
+                <li><a href="index.html#roi">Calculator</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>HIPAA Compliance</h1>
+            <p>How we protect Protected Health Information (PHI)</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="content">
+        <div class="container">
+            <div class="content-wrapper">
+                
+                <div class="info-card">
+                    <h3>Protected Health Information (PHI) Handling</h3>
+                    <p>ClaimsGuard.io operates as a Business Associate under HIPAA regulations. We understand that medical claims data contains Protected Health Information (PHI) and treat it with the highest level of security and confidentiality.</p>
+                    
+                    <ul style="margin-top: 1rem;">
+                        <li>All data is encrypted in transit (TLS 1.3) and at rest (AES-256)</li>
+                        <li>Secure file transfer via SFTP or encrypted upload portals only</li>
+                        <li>Access controls and audit logging for all data interactions</li>
+                        <li>Regular security assessments and vulnerability testing</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Our Security Commitment</h2>
+                    
+                    <div class="feature-box">
+                        <div class="feature-icon">🔒</div>
+                        <div class="feature-content">
+                            <h3>Encryption</h3>
+                            <p>All client data is protected with AES-256 encryption at rest and TLS 1.3 in transit. Your data is unreadable without proper authorization.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <div class="feature-icon">📋</div>
+                        <div class="feature-content">
+                            <h3>Business Associate Agreement (BAA)</h3>
+                            <p>We provide Business Associate Agreements to all clients. This legally binds us to HIPAA compliance and specifies our responsibilities in handling PHI.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-box">
+                        <div class="feature-icon">🏠</div>
+                        <div class="feature-content">
+                            <h3>Data Sovereignty</h3>
+                            <p>Your data never touches third-party clouds. We maintain full control over our infrastructure and data handling processes.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Security Measures</h2>
+                    
+                    <p>We implement comprehensive technical and organizational safeguards to protect your data:</p>
+                    
+                    <div class="security-grid">
+                        <div class="security-card">
+                            <strong>Access Control</strong>
+                            <p>Role-based access with multi-factor authentication. Only authorized personnel can access client data.</p>
+                        </div>
+                        
+                        <div class="security-card">
+                            <strong>Audit Trails</strong>
+                            <p>Complete logging of all data access and modifications. Regular audit reviews ensure compliance.</p>
+                        </div>
+                        
+                        <div class="security-card">
+                            <strong>Data Retention</strong>
+                            <p>Data retained only as long as necessary for audit completion, then securely deleted per BAA terms.</p>
+                        </div>
+                        
+                        <div class="security-card">
+                            <strong>Incident Response</strong>
+                            <p>Documented breach notification procedures. We notify clients within 24 hours of any suspected incident.</p>
+                        </div>
+                        
+                        <div class="security-card">
+                            <strong>Employee Training</strong>
+                            <p>All team members complete annual HIPAA training and sign confidentiality agreements.</p>
+                        </div>
+                        
+                        <div class="security-card">
+                            <strong>Physical Security</strong>
+                            <p>Secure facilities with controlled access. Workstations are encrypted and automatically lock.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Our Responsibilities as a Business Associate</h2>
+                    
+                    <p>Under HIPAA and our Business Associate Agreement, we commit to:</p>
+                    
+                    <ul>
+                        <li><strong>Safeguard PHI:</strong> Implement appropriate safeguards to prevent unauthorized use or disclosure of Protected Health Information</li>
+                        <li><strong>Report Breaches:</strong> Notify you within 24 hours of any security incident involving your PHI</li>
+                        <li><strong>Subcontractor Oversight:</strong> Ensure any subcontractors who access PHI also comply with HIPAA</li>
+                        <li><strong>Access Accounting:</strong> Maintain records of who accesses PHI and when</li>
+                        <li><strong>Return or Destroy:</strong> At termination of services, return or securely destroy all PHI as specified in the BAA</li>
+                        <li><strong>HHS Compliance:</strong> Make our practices available to the Secretary of HHS for compliance purposes</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h2>What is Protected Health Information (PHI)?</h2>
+                    
+                    <p>PHI is any information in a medical record that can be used to identify an individual and that was created, used, or disclosed in the course of providing a health care service. This includes:</p>
+                    
+                    <ul>
+                        <li>Names, addresses, birth dates, and Social Security numbers</li>
+                        <li>Medical record numbers and health plan beneficiary numbers</li>
+                        <li>Diagnosis codes and procedure codes</li>
+                        <li>Dates of service and provider information</li>
+                        <li>Any other unique identifying numbers or characteristics</li>
+                    </ul>
+                    
+                    <p>As your Business Associate, we handle all PHI we receive in accordance with HIPAA regulations and our BAA with you.</p>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Data Breach Notification</h2>
+                    
+                    <p>In the unlikely event of a data breach involving your PHI, we will:</p>
+                    
+                    <ul>
+                        <li><strong>Within 24 hours:</strong> Notify you of the breach</li>
+                        <li><strong>Within 72 hours:</strong> Provide details of the breach, including what data was involved and steps taken</li>
+                        <li><strong>Ongoing:</strong> Work with you to mitigate harm and comply with notification requirements</li>
+                    </ul>
+                    
+                    <p>We maintain cyber liability insurance and have established relationships with forensic experts to respond quickly to any security incidents.</p>
+                </div>
+                
+                <div class="contact-box">
+                    <h3>Questions About Compliance?</h3>
+                    <p>We're happy to discuss our security practices and provide our BAA for review.</p>
+                    <div class="email">fast@claimsguard.io</div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo" style="color: white;">
+                        <div class="logo-shield">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                <path d="M9 12l2 2 4-4" stroke-width="3"/>
+                            </svg>
+                        </div>
+                        ClaimsGuard.io
+                    </a>
+                    <p>AI-powered medical claims recovery for self-insured employers.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="index.html#problem">The Problem</a>
+                    <a href="index.html#solution">How It Works</a>
+                    <a href="index.html#roi">Calculator</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <a href="index.html#contact">Contact Us</a>
+                    <a href="https://forms.gle/TzJToPPfcbXkh9kR9" target="_blank">Get a Quote</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                    <a href="hipaa-compliance.html">HIPAA Compliance</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 ClaimsGuard.io. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

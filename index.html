@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClaimsGuard.io | Medical Claims Recovery for Self-Insured Employers</title>
+    <meta name="description" content="Recover millions in overpaid medical claims. AI-powered EDI analysis + expert auditors. We only get paid when you recover money.">
+    <meta name="keywords" content="medical claims audit, self-insured employer, claims recovery, TPA audit, EDI 835, healthcare cost reduction">
+    
+    <!-- Favicon - CSS Shield -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+    
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --primary-light: #2c5282;
+            --primary-dark: #152a45;
+            --accent: #10b981;
+            --accent-light: #34d399;
+            --accent-dark: #059669;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --light: #f8fafc;
+            --light-gray: #f1f5f9;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --gray-light: #94a3b8;
+            --white: #ffffff;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Animated gradient background */
+        .gradient-bg {
+            background: linear-gradient(-45deg, var(--primary), var(--primary-light), var(--primary-dark), var(--primary));
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Header */
+        header {
+            background: rgba(30, 58, 95, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-lg);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo-shield {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-accent);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        
+        .logo-shield svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: white;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .cta-button {
+            background: var(--gradient-accent);
+            color: white;
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+        }
+        
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.3);
+            box-shadow: none;
+        }
+        
+        .cta-button.secondary:hover {
+            background: white;
+            color: var(--primary);
+            border-color: white;
+        }
+        
+        .cta-button.large {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Hero */
+        .hero {
+            background: var(--gradient);
+            color: white;
+            padding: 10rem 0 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        
+        .hero h1 span {
+            color: var(--accent-light);
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+        
+        .hero .description {
+            font-size: 1.125rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.85;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 1.5rem 2rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.15);
+            min-width: 160px;
+        }
+        
+        .stat-number {
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: var(--accent-light);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 6rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.75rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .section-header p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .section-badge {
+            display: inline-block;
+            background: var(--accent-light);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+        
+        /* Problem Section */
+        .problem {
+            background: var(--light-gray);
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .problem-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+        
+        .problem-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--accent-light);
+        }
+        
+        .problem-card .icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .problem-card:nth-child(2) .icon {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        }
+        
+        .problem-card:nth-child(3) .icon {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        }
+        
+        .problem-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+        
+        .problem-card .stat-number {
+            font-size: 3rem;
+            color: var(--danger);
+            font-weight: 800;
+            margin: 1rem 0;
+        }
+        
+        /* Solution Section */
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .solution-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-accent);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        
+        .solution-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .solution-card .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-accent);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        
+        .solution-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.35rem;
+        }
+        
+        .solution-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+        
+        /* ROI Calculator */
+        .roi-section {
+            background: var(--gradient);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .roi-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.3;
+        }
+        
+        .roi-section .section-header h2,
+        .roi-section .section-header p {
+            color: white;
+        }
+        
+        .calculator-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .calculator-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .calculator-inputs {
+            background: white;
+            color: var(--dark);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .input-group {
+            margin-bottom: 1.75rem;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+        
+        .input-hint {
+            font-size: 0.875rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+        
+        .calculator-results {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .result-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .result-card.primary {
+            background: white;
+            color: var(--dark);
+        }
+        
+        .result-label {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .result-card.primary .result-label {
+            color: var(--gray);
+        }
+        
+        .result-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-light);
+        }
+        
+        .result-card.primary .result-amount {
+            color: var(--accent);
+        }
+        
+        .result-card.primary .result-amount.range {
+            font-size: 1.75rem;
+        }
+        
+        .calc-button {
+            width: 100%;
+            background: var(--gradient-accent);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+        }
+        
+        .calc-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+        }
+        
+        /* Target Audience */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .audience-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .audience-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--accent-light);
+        }
+        
+        .audience-card .icon {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-accent);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+        }
+        
+        .audience-card:nth-child(2) .icon {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            box-shadow: 0 8px 24px rgba(30, 58, 95, 0.3);
+        }
+        
+        .audience-card:nth-child(3) .icon {
+            background: linear-gradient(135deg, var(--warning) 0%, #fbbf24 100%);
+            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.3);
+        }
+        
+        .audience-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.35rem;
+        }
+        
+        .audience-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+        
+        /* Why ClaimsGuard */
+        .differentiators {
+            background: var(--light-gray);
+        }
+        
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+        
+        .diff-card {
+            background: white;
+            text-align: center;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+        
+        .diff-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .diff-card .icon {
+            width: 70px;
+            height: 70px;
+            background: var(--light-gray);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .diff-card:hover .icon {
+            background: var(--accent-light);
+            transform: scale(1.1);
+        }
+        
+        .diff-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-section p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .email-cta {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-light);
+            margin-top: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .footer-brand .logo {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand p {
+            color: var(--gray-light);
+            line-height: 1.7;
+        }
+        
+        .footer-section h4 {
+            color: var(--accent-light);
+            margin-bottom: 1.25rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .footer-section a {
+            color: var(--gray-light);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.75rem;
+            transition: color 0.2s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--gray-light);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 8rem 0 4rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.125rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-stats {
+                gap: 1rem;
+            }
+            
+            .stat {
+                padding: 1rem;
+                min-width: 140px;
+            }
+            
+            section {
+                padding: 4rem 0;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .calculator-wrapper {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        /* Loading animation for results */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .updating {
+            animation: pulse 1s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <div class="logo-shield">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M9 12l2 2 4-4" stroke-width="3"/>
+                    </svg>
+                </div>
+                ClaimsGuard.io
+            </div>
+            <ul class="nav-links">
+                <li><a href="#problem">Problem</a></li>
+                <li><a href="#solution">Solution</a></li>
+                <li><a href="#roi">Calculator</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-badge">
+                <span>🚀</span>
+                <span>Now accepting pilot customers</span>
+            </div>
+            
+            <h1>Stop Overpaying.<br>Start <span>Recovering</span>.</h1>
+            <p class="subtitle">AI-powered medical claims recovery for self-insured employers</p>
+            <p class="description">We help employers and health plan administrators recover millions in overpaid medical claims. Fast, independent validation with zero operational burden.</p>
+            
+            <div class="hero-buttons">
+                <a href="#roi" class="cta-button large">Calculate Your Recovery</a>
+                <a href="#contact" class="cta-button secondary large">Schedule Free Audit</a>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">7.8%</span>
+                    <span class="stat-label">Average Error Rate</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">$31B</span>
+                    <span class="stat-label">Annual Overpayments</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">&lt;30 Days</span>
+                    <span class="stat-label">To Findings</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem" id="problem">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">The Problem</span>
+                <h2>Your TPA Processes Thousands of Claims.<br>Errors Slip Through. Money Walks Out.</h2>
+                <p>The healthcare system is complex—and billing errors are costing you more than you think.</p>
+            </div>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="icon">💸</div>
+                    <h3>Overpayments</h3>
+                    <div class="stat-number">7.8%</div>
+                    <p>of Medicare claims contain errors. Commercial plans see similar rates. That's millions in overpayments walking out your door.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">⏱️</div>
+                    <h3>Slow Recovery</h3>
+                    <div class="stat-number">6-12</div>
+                    <p>months for traditional recovery audits. By then, the money—and the opportunity—is gone.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">😵‍💫</div>
+                    <h3>Complex Data</h3>
+                    <div class="stat-number">835/837</div>
+                    <p>EDI formats are complex. Your team doesn't have time to become EDI experts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">The Solution</span>
+                <h2>How ClaimsGuard Works</h2>
+                <p>Three steps to recovered revenue</p>
+            </div>
+            
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="step-number">1</div>
+                    <h3>Secure Data Transfer</h3>
+                    <p>We receive your 835/837 EDI files via secure SFTP or encrypted upload. No IT integration required.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="step-number">2</div>
+                    <h3>AI + Expert Analysis</h3>
+                    <p>Our AI parses every claim against 300+ validation rules. Human auditors review flagged items.</p>
+                </div>
+                <div class="solution-card">
+                    <div class="step-number">3</div>
+                    <h3>Actionable Findings</h3>
+                    <p>Receive a detailed recovery report in days, not months. We provide the path to recover every dollar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Calculator -->
+    <section class="roi-section" id="roi">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge" style="background: white; color: var(--primary);">ROI Calculator</span>
+                <h2>Calculate Your Recovery</h2>
+                <p>See how much you could recover with a quick audit</p>
+            </div>
+            
+            <div class="calculator-wrapper">
+                <div class="calculator-inputs">
+                    <div class="input-group">
+                        <label for="employees">Number of Covered Lives</label>
+                        <input type="number" id="employees" placeholder="e.g., 200" min="1" oninput="calculateRecovery()">
+                        <div class="input-hint">Total employees + dependents on your plan</div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="annual-spend">Annual Medical Claims Spend</label>
+                        <input type="number" id="annual-spend" placeholder="e.g., 2000000" min="0" oninput="calculateRecovery()">
+                        <div class="input-hint">Total annual medical + pharmacy spend</div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="error-rate">Estimated Error Rate (%)</label>
+                        <input type="number" id="error-rate" value="6" min="1" max="15" step="0.5" oninput="calculateRecovery()">
+                        <div class="input-hint">Industry average: 5-8%</div>
+                    </div>
+                </div>
+                
+                <div class="calculator-results">
+                    <div class="result-card primary">
+                        <div class="result-label">Conservative Estimate</div>
+                        <div class="result-amount" id="conservative-result">$0</div>
+                        <p style="color: var(--gray); margin-top: 0.5rem;">Based on 50% of errors being recoverable</p>
+                    </div>
+                    
+                    <div class="result-card">
+                        <div class="result-label">Potential Recovery Range</div>
+                        <div class="result-amount range" id="range-result">$0 – $0</div>
+                        <p style="opacity: 0.9; margin-top: 0.5rem;">Based on 3-9% industry error rates</p>
+                    </div>
+                    
+                    <div class="result-card">
+                        <div class="result-label">At Stake (Total Errors)</div>
+                        <div class="result-amount" id="total-errors">$0</div>
+                        <p style="opacity: 0.9; margin-top: 0.5rem;">Total value of billing errors</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Audience -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Who We Help</span>
+                <h2>Built for Organizations Managing Their Own Health Benefits</h2>
+                <p>Purpose-built for your specific needs</p>
+            </div>
+            
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <div class="icon">🏢</div>
+                    <h3>Self-Insured Employers</h3>
+                    <p>50-500+ employees managing their own health plan. You pay the claims—you should know they're right.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="icon">🛡️</div>
+                    <h3>TPAs</h3>
+                    <p>Third-Party Administrators who want independent validation to ensure accuracy and build client trust.</p>
+                </div>
+                <div class="audience-card">
+                    <div class="icon">🏥</div>
+                    <h3>Health Plan Administrators</h3>
+                    <p>Organizations managing multiple employer plans who need scalable, accurate claims validation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why ClaimsGuard -->
+    <section class="differentiators">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Why ClaimsGuard</span>
+                <h2>Not Your Typical Recovery Audit Firm</h2>
+                <p>What makes us different</p>
+            </div>
+            
+            <div class="diff-grid">
+                <div class="diff-card">
+                    <div class="icon">⚡</div>
+                    <h3>Speed</h3>
+                    <p>Findings in days, not months. We know overpayments lose value over time.</p>
+                </div>
+                <div class="diff-card">
+                    <div class="icon">🤖</div>
+                    <h3>AI-Powered</h3>
+                    <p>Machine learning + human expertise. We catch what automated systems miss.</p>
+                </div>
+                <div class="diff-card">
+                    <div class="icon">🔒</div>
+                    <h3>Zero Burden</h3>
+                    <p>No IT integration. We handle the EDI complexity. You get clear findings.</p>
+                </div>
+                <div class="diff-card">
+                    <div class="icon">💰</div>
+                    <h3>Contingency Pricing</h3>
+                    <p>We only get paid when you recover money. No upfront fees. No risk.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <span class="section-badge" style="background: rgba(255,255,255,0.2); color: white; margin-bottom: 1rem;">Get In Touch</span>
+            <h2>Ready to Recover?</h2>
+            <p>Schedule a free claims audit. See exactly what's recoverable—no obligation, no upfront cost.</p>
+            
+            <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 2rem; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); max-width: 500px; margin: 2rem auto;">
+                <div style="margin-bottom: 1.5rem;">
+                    <div style="font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.8; margin-bottom: 0.5rem;">Email Us</div>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent-light);">fast@claimsguard.io</div>
+                </div>
+                
+                <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 1.5rem;">Include your company name, number of covered lives, and annual health spend for a quick estimate.</p>
+                
+                <a href="https://forms.gle/TzJToPPfcbXkh9kR9" target="_blank" class="cta-button large" style="display: block; margin-bottom: 1rem;">Fill Out Our Contact Form →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- HIPAA Section -->
+    <section id="hipaa" style="padding: 6rem 0;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Security & Compliance</span>
+                <h2>HIPAA Compliance</h2>
+                <p>Your data security is our highest priority</p>
+            </div>
+            
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border-left: 4px solid var(--accent); padding: 2rem; border-radius: 0 12px 12px 0; margin-bottom: 3rem;">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Protected Health Information (PHI) Handling</h3>
+                    <p style="color: var(--dark); margin-bottom: 1rem;">ClaimsGuard.io operates as a Business Associate under HIPAA regulations. We understand that medical claims data contains Protected Health Information (PHI) and treat it with the highest level of security and confidentiality.</p>
+                    <ul style="margin-left: 1.5rem; color: var(--dark); line-height: 2;">
+                        <li>All data is encrypted in transit (TLS 1.3) and at rest (AES-256)</li>
+                        <li>Secure file transfer via SFTP or encrypted upload portals only</li>
+                        <li>Access controls and audit logging for all data interactions</li>
+                        <li>Regular security assessments and vulnerability testing</li>
+                    </ul>
+                </div>
+                
+                <div class="solution-grid" style="margin-bottom: 3rem;">
+                    <div class="solution-card">
+                        <div class="step-number">🔒</div>
+                        <h3>Encryption</h3>
+                        <p>All client data is protected with AES-256 encryption at rest and TLS 1.3 in transit. Your data is unreadable without proper authorization.</p>
+                    </div>
+                    
+                    <div class="solution-card">
+                        <div class="step-number">📋</div>
+                        <h3>BAA Available</h3>
+                        <p>We provide Business Associate Agreements (BAAs) to all clients. This legally binds us to HIPAA compliance and specifies our responsibilities.</p>
+                    </div>
+                    
+                    <div class="solution-card">
+                        <div class="step-number">🏠</div>
+                        <h3>Data Sovereignty</h3>
+                        <p>Your data never touches third-party clouds. We maintain full control over our infrastructure and data handling processes.</p>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 2.5rem; border-radius: 20px; box-shadow: var(--shadow);">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem;">Our Security Measures</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <strong style="color: var(--accent);">Access Control</strong>
+                            <p style="color: var(--gray); font-size: 0.9rem; margin-top: 0.25rem;">Role-based access with multi-factor authentication.</p>
+                        </div>
+                        <div>
+                            <strong style="color: var(--accent);">Audit Trails</strong>
+                            <p style="color: var(--gray); font-size: 0.9rem; margin-top: 0.25rem;">Complete logging of all data access and modifications.</p>
+                        </div>
+                        <div>
+                            <strong style="color: var(--accent);">Data Retention</strong>
+                            <p style="color: var(--gray); font-size: 0.9rem; margin-top: 0.25rem;">Data retained only as necessary, then securely deleted.</p>
+                        </div>
+                        <div>
+                            <strong style="color: var(--accent);">Incident Response</strong>
+                            <p style="color: var(--gray); font-size: 0.9rem; margin-top: 0.25rem;">24-hour breach notification procedures.</p>
+                        </div>
+                        <div>
+                            <strong style="color: var(--accent);">Employee Training</strong>
+                            <p style="color: var(--gray); font-size: 0.9rem; margin-top: 0.25rem;">Annual HIPAA training for all team members.</p>
+                        </div>
+                        <div>
+                            <strong style="color: var(--accent);">Physical Security</strong>
+                            <p style="color: var(--gray); font-size: 0.9rem; margin-top: 0.25rem;">Secure facilities with controlled access.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: var(--light-gray); border-radius: 16px;">
+                    <h4 style="color: var(--primary); margin-bottom: 1rem;">Questions About Compliance?</h4>
+                    <p style="color: var(--gray); margin-bottom: 1.5rem;">We're happy to discuss our security practices and provide our BAA for review.</p>
+                    <div style="font-size: 1.25rem; font-weight: 600; color: var(--primary);">Contact us: fast@claimsguard.io</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo" style="color: white;">
+                        <div class="logo-shield">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                <path d="M9 12l2 2 4-4" stroke-width="3"/>
+                            </svg>
+                        </div>
+                        ClaimsGuard.io
+                    </div>
+                    <p>AI-powered medical claims recovery for self-insured employers. Fast, accurate, zero burden.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#problem">The Problem</a>
+                    <a href="#solution">How It Works</a>
+                    <a href="#roi">ROI Calculator</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <a href="#contact">fast@claimsguard.io</a>
+                    <a href="https://claimsguard.io">claimsguard.io</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                    <a href="hipaa-compliance.html">HIPAA Compliance</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 ClaimsGuard.io. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function calculateRecovery() {
+            const employees = parseInt(document.getElementById('employees').value) || 0;
+            const annualSpend = parseInt(document.getElementById('annual-spend').value) || 0;
+            const errorRate = parseFloat(document.getElementById('error-rate').value) || 6;
+            
+            // Format currency
+            const formatter = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                maximumFractionDigits: 0
+            });
+            
+            // Calculate total errors
+            const totalErrors = annualSpend * (errorRate / 100);
+            
+            // Conservative: 50% of errors are recoverable
+            const conservative = totalErrors * 0.5;
+            
+            // Range: 3-9% error rate
+            const lowEstimate = annualSpend * 0.03 * 0.5;
+            const highEstimate = annualSpend * 0.09 * 0.5;
+            
+            // Update displays
+            if (annualSpend > 0) {
+                document.getElementById('conservative-result').textContent = formatter.format(conservative);
+                document.getElementById('range-result').textContent = formatter.format(lowEstimate) + ' – ' + formatter.format(highEstimate);
+                document.getElementById('total-errors').textContent = formatter.format(totalErrors);
+            } else {
+                document.getElementById('conservative-result').textContent = '$0';
+                document.getElementById('range-result').textContent = '$0 – $0';
+                document.getElementById('total-errors').textContent = '$0';
+            }
+        }
+        
+        // Initialize on load
+        calculateRecovery();
+    </script>
+</body>
+</html>
